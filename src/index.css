@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design system — all colors are HSL-based */
+@layer base {
+  :root {
+    /* Romantic pastel palette */
+    --background: 30 40% 96%;
+    --foreground: 340 20% 25%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 340 20% 25%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 340 20% 25%;
+
+    /* Pastel pink - main romantic color */
+    --primary: 350 100% 85%;
+    --primary-foreground: 340 60% 40%;
+    --primary-glow: 350 100% 90%;
+
+    /* Lilac - secondary romantic color */
+    --secondary: 270 50% 88%;
+    --secondary-foreground: 270 40% 35%;
+
+    /* Soft mint - accent color */
+    --accent: 160 50% 85%;
+    --accent-foreground: 160 40% 30%;
+
+    --muted: 30 30% 92%;
+    --muted-foreground: 340 15% 50%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 340 20% 90%;
+    --input: 340 20% 90%;
+    --ring: 350 100% 85%;
+
+    --radius: 1rem;
+
+    /* Custom romantic gradients */
+    --gradient-romantic: linear-gradient(135deg, hsl(350 100% 85%) 0%, hsl(270 50% 88%) 100%);
+    --gradient-dreamy: linear-gradient(180deg, hsl(350 100% 95%) 0%, hsl(270 40% 95%) 50%, hsl(160 40% 95%) 100%);
+    --gradient-soft: linear-gradient(135deg, hsl(30 40% 96%) 0%, hsl(350 100% 95%) 100%);
+
+    /* Soft shadows for depth */
+    --shadow-soft: 0 4px 20px hsla(350, 100%, 85%, 0.30);
+    --shadow-medium: 0 8px 30px hsla(350, 100%, 80%, 0.40);
+    --shadow-glow: 0 0 30px hsla(350, 100%, 85%, 0.50);
+
+    /* Smooth transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Sidebar (kept as-is) */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Romantic, bright-esque dark mode */
+    --background: 340 30% 15%;
+    --foreground: 350 100% 95%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Reusable animations, shadows, and helpers */
+@layer utilities {
+  /* ⭐ Custom cursor (put 24x24 PNG at /public/cursors/star.png) */
+  .cursor-star {
+    cursor: url("/cursors/star.png") 12 12, auto;
+  }
+  @media (hover: none) {
+    .cursor-star { cursor: auto; }
+  }
+
+  /* Shadows */
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-medium { box-shadow: var(--shadow-medium); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+
+  /* Gradients as utilities (optional) */
+  .bg-gradient-romantic { background: var(--gradient-romantic); }
+  .bg-gradient-dreamy { background: var(--gradient-dreamy); }
+  .bg-gradient-soft { background: var(--gradient-soft); }
+
+  /* Keyframes */
+  @keyframes sparkle {
+    0%, 100% { opacity: .4; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.25); }
+  }
+  @keyframes floatSlow {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+  }
+  @keyframes scaleIn {
+    0% { opacity: 0; transform: scale(.9); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-6deg); }
+    75% { transform: rotate(6deg); }
+  }
+  @keyframes pulseSoft {
+    0%, 100% { transform: scale(1); opacity: .95; }
+    50% { transform: scale(1.06); opacity: 1; }
+  }
+
+  /* Animation utilities used in your components */
+  .animate-sparkle { animation: sparkle 2.2s ease-in-out infinite; }
+  .animate-float-slow { animation: floatSlow 5s ease-in-out infinite; }
+  .animate-scale-in { animation: scaleIn .2s ease-out both; }
+  .animate-wiggle { animation: wiggle 1.4s ease-in-out infinite; }
+  .animate-pulse-soft { animation: pulseSoft 1.8s ease-in-out infinite; }
+
+
+  /* Backdrop cards (used in popups) */
+  .bg-card\/95 { background-color: hsl(var(--card) / 0.95); }
+}
